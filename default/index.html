@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ingreso JS</title>
+	<script type="text/javascript" src="../js/jQuery3.3.1.js"></script>
+	<script type="text/javascript">
+		function mostrar() {
+
+			$.ajax({
+
+				type:"POST",
+				url:"datos.php",
+				success: function (d) {
+					$("#datos").html(d);
+				}
+		});
+
+		function guardar() {
+			
+			var datos = {
+				"nombre":$("#cajanombre").val(),
+				"apellido":$("#cajaapellido").val(),
+				"edad":$("#cajaedad").val()
+
+			}
+
+			$.ajax({
+
+				type:"POST",
+				url:"guardar.php",
+				data:"datos", //aqui sguarda o se asigna la variable datos
+				success: function (d) {
+					alert("se ha guardado tu registro")
+				}
+			});
+		}
+		
+	</script>
+
+</head>
+
+<body>
+	<h2>Ingrese los datos requeridos:</h2>
+
+	<div class="contendor">
+	<label>Nombre:</label><input type="text" name="nombre" id="cajanombre" placeholder="ingrese nombre" required="Campo vacio">
+	<br><br>
+	<label>Apellido:</label><input type="text" name="apellido" id="cajaapellido" placeholder="ingrese apellido" required="Campo vacio">
+	<br><br>
+	<label>Edad:</label><input type="text" name="edad" id="cajaedad" placeholder="ingrese edad" required="Campo vacio">
+	<br><br>
+		<button onclick="guardar()">Guardar datos</button>
+	</div> <!--contenedor-->
+
+</body>
+</html>
